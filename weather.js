@@ -6,24 +6,68 @@ async function getWeatherData(location, units) {
     const weatherData = processWeatherJSON(weatherJSON);
     return weatherData;
   } else {
-    throw new Error(`Error ${response.status}`);
+    throw new Error(response.status);
   }
 }
 
 function processWeatherJSON(weatherJSON) {
   return {
-    name: weatherJSON.name,
-    temp: weatherJSON.main.temp,
-    weather: weatherJSON.weather[0].main,
+    city: weatherJSON.name,
+    temp: Math.round(weatherJSON.main.temp),
+    forecast: weatherJSON.weather[0].main,
     description: weatherJSON.weather[0].description,
     icon: `https://openweathermap.org/img/wn/${weatherJSON.weather[0].icon}@2x.png`
   };
 }
 
+function addDataToDOM(data, units) {
+  city.textContent = data.city;
+  temp.textContent = `${data.temp}°${(units === 'metric') ? 'C' : 'F'}`;
+  forecast.textContent = data.forecast;
+  description.textContent = data.description;
+  icon.src = data.icon;
+
+  switch (data.forecast) {
+    case 'Clear':
+      document.body.className = 'clear';
+      break;
+    case 'Rain':
+    case 'Drizzle':
+      document.body.className = 'rain';
+      break;
+    case 'Thunderstorm':
+      document.body.className = 'storm';
+      break;
+    case 'Clouds':
+    case 'Snow':
+      document.body.className = 'cloud';
+      break;
+    default:
+      document.body.className = 'dust';
+  }
+} 
+
+function updateWeather(location, units) {
+  getWeatherData(location, units)
+    .then(data => addDataToDOM(data, units))
+    .catch(err => alert(`Oh no! An unexpected error occured. (${err})`));
+}
+
 const input = document.querySelector('input');
 const button = document.querySelector('button');
+const container = document.querySelector('.container');
+
+const city = document.querySelector('.city');
+const temp = document.querySelector('.temp');
+const icon = document.querySelector('.icon');
+const forecast = document.querySelector('.forecast');
+const description = document.querySelector('.description');
 
 button.addEventListener('click', () => {
-  const selectedUnits = document.querySelector('input[type="radio"]:checked');
-  getWeatherData(input.value, selectedUnits.value).then(data => console.log(data));
+  if (input.value !== '') {
+    const selectedUnits = document.querySelector('input[type="radio"]:checked');
+    updateWeather(input.value, selectedUnits.value);
+  }
 });
+
+updateWeather('London', 'metric');

@@ -38,10 +38,6 @@ body {
   transition: 0.2s ease-in-out;
 }
 
-h1 {
-  margin: 0;
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -110,4 +106,47 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.weather {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  border-radius: 32px;
+  padding: 32px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.city {
+  grid-column: 1 / 3;
+  margin-left: 20px;
+  margin-right: 32px;
+}
+
+.temp {
+  margin-right: 20px;
+}
+
+.city,
+.temp {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.icon {
+  grid-row: 2 / 4;
+}
+
+.forecast,
+.description {
+  grid-column: 2 / 4;
+}
+
+.forecast {
+  font-size:1.5rem;
+  font-weight: bold;
+  align-self: flex-end;
+}
+
+.description {
+  align-self: flex-start;
 }
