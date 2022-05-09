@@ -1,4 +1,4 @@
-async function getWeatherData(location) {
+async function getWeatherData(location, units) {
   const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=7458751a8ea08978c503e82b15abe794&units=${units}`);
   
   if (response.ok) {
@@ -22,4 +22,10 @@ function processWeatherJSON(weatherJSON) {
 
 const units = 'metric';
 
-getWeatherData('san francisco').then(data => console.log(data));
+const input = document.querySelector('input');
+const button = document.querySelector('button');
+
+button.addEventListener('click', () => {
+  const selectedUnits = document.querySelector('input[type="radio"]:checked');
+  getWeatherData(input.value, selectedUnits.value).then(data => console.log(data));
+});
