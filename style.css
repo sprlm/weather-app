@@ -1,0 +1,113 @@
+:root {
+  font-family: 'Roboto', sans-serif;
+}
+
+.clear {
+  background-color: #93c5fd;
+  color: #1e293b;
+}
+
+.cloud {
+  background-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.rain {
+  background-color: #1e3a8a;
+  color: #f8fafc;
+}
+
+.storm {
+  background-color: #1e3a8a;
+  color: #fef08a;
+}
+
+.dust {
+  background-color: #a8a29e;
+  color: #0f172a;
+} 
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  transition: 0.2s ease-in-out;
+}
+
+h1 {
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 64px;
+  padding: 0 16px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #111827;
+  color: white;
+}
+
+.search-bar {
+  border-radius: 16px;
+  display: flex;
+}
+
+.search-bar:focus-within {
+  outline: 1px solid white;
+}
+
+input[type="text"] {
+  height: 25px;
+  width: 256px;
+  border: 1px solid white;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  padding-left: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  background-color: transparent;
+  color: white;
+}
+
+input[type="text"]::placeholder {
+  color: #d1d5db;
+}
+
+input[type="text"]:focus {
+  outline: 0;
+}
+
+input[type="radio"] {
+  align-self: flex-start;
+}
+
+button {
+  border: 0;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding: 4px 10px 4px 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: white;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.container {
+  height: calc(100% - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
